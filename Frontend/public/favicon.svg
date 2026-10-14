@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="nexaFavGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#10a37f" />
+      <stop offset="50%" stopColor="#06b6d4" />
+      <stop offset="100%" stopColor="#3b82f6" />
+    </linearGradient>
+    <radialGradient id="nexaFavCenter" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stopColor="#38ef7d" stopOpacity="0.8" />
+      <stop offset="100%" stopColor="#0d0e12" stopOpacity="0" />
+    </radialGradient>
+    <filter id="nexaFavGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" floodColor="#10a37f" floodOpacity="0.6" />
+    </filter>
+  </defs>
+
+  <!-- Dark Background Rounded App Shield -->
+  <rect width="64" height="64" rx="14" fill="#0d0e12" stroke="rgba(255,255,255,0.12)" stroke-width="1.2" />
+
+  <!-- Center Ambient Light -->
+  <circle cx="32" cy="32" r="18" fill="url(#nexaFavCenter)" />
+
+  <!-- Futuristic Interlocking N Lettermark -->
+  <path
+    d="M18 46V18L32 37V18M32 37L46 18V46"
+    stroke="url(#nexaFavGrad)"
+    stroke-width="5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    filter="url(#nexaFavGlow)"
+  />
+
+  <!-- Quantum Infinity Arc -->
+  <path
+    d="M22 26C22 22 26 19 32 25C38 31 43 35 47 30"
+    stroke="#06b6d4"
+    stroke-width="2.5"
+    stroke-linecap="round"
+    stroke-dasharray="3 2"
+    opacity="0.9"
+  />
+
+  <!-- Glowing Core Orb -->
+  <circle cx="32" cy="32" r="3.5" fill="#ffffff" filter="url(#nexaFavGlow)" />
+  <circle cx="32" cy="32" r="1.8" fill="#10a37f" />
+</svg>
