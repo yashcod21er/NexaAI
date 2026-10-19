@@ -42,12 +42,34 @@ export const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY,
 });
 
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const frontendDistPath = path.resolve(__dirname, "../Frontend/dist");
+
+// Serve static frontend build if present
+app.use(express.static(frontendDistPath));
+
 // Health check endpoint
-app.get("/", (req, res) => {
+app.get("/api/health", (req, res) => {
   res.json({
     status: "online",
     message: "NexaAI Backend is running with Gemini API!",
     models: ["gemini-flash-latest", "gemini-3.6-flash", "gemini-flash-lite-latest"],
+  });
+});
+
+// Root & SPA fallback handler
+app.get("/", (req, res, next) => {
+  res.sendFile(path.join(frontendDistPath, "index.html"), (err) => {
+    if (err) {
+      res.json({
+        status: "online",
+        message: "NexaAI Backend is running with Gemini API!",
+        models: ["gemini-flash-latest", "gemini-3.6-flash", "gemini-flash-lite-latest"],
+      });
+    }
   });
 });
 
@@ -139,6 +161,12 @@ app.post("/api/gemini", async (req, res) => {
       error: error.message || "Failed to generate response",
     });
   }
+// Client-side SPA routing fallback
+app.get("*", (req, res, next) => {
+  if (req.path.startsWith("/api")) return next();
+  res.sendFile(path.join(frontendDistPath, "index.html"), (err) => {
+    if (err) next();
+  });
 });
 
 app.listen(PORT, () => {

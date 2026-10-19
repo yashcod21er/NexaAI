@@ -100,13 +100,21 @@ export default function Sidebar({
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.aside
-          className="chatgpt-sidebar"
-          initial={{ x: -260, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          exit={{ x: -260, opacity: 0 }}
-          transition={{ type: "spring", damping: 28, stiffness: 300 }}
-        >
+        <>
+          <motion.div
+            className="sidebar-mobile-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onToggleSidebar}
+          />
+          <motion.aside
+            className="chatgpt-sidebar"
+            initial={{ x: -280, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -280, opacity: 0 }}
+            transition={{ type: "spring", damping: 28, stiffness: 300 }}
+          >
           {/* Top Actions Header */}
           {/* Top Actions Header with NexaAI Brand */}
           <div className="sidebar-top-bar">
@@ -329,6 +337,7 @@ export default function Sidebar({
             )}
           </div>
         </motion.aside>
+        </>
       )}
     </AnimatePresence>
   );

@@ -1992,29 +1992,9 @@
   background-color: rgba(239, 68, 68, 0.25);
 }
 
-/* =========================================================
-   Mobile Responsiveness
-   ========================================================= */
-@media (max-width: 768px) {
-  .chatgpt-sidebar {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.8);
-  }
-
-  .user-message-bubble {
-    max-width: 85%;
-  }
-
-  .chatgpt-empty-state {
-    padding: 20px 12px;
-  }
-
-  .empty-title {
-    font-size: 1.5rem;
-  }
+/* Mobile drawer backdrop */
+.sidebar-mobile-backdrop {
+  display: none;
 }
 
 /* Website Navigation Button inside ChatArea Header */
@@ -3095,40 +3075,7 @@
   color: #10a37f;
 }
 
-/* Mobile Responsiveness for Landing Page */
-@media (max-width: 768px) {
-  .landing-hero-section {
-    padding: 0 16px;
-    margin-top: 40px;
-  }
-  .hero-main-title {
-    font-size: 2.4rem;
-  }
-  .landing-nav-links {
-    display: none;
-  }
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .bento-grid {
-    grid-template-columns: 1fr;
-  }
-  .bento-card.large {
-    grid-column: span 1;
-  }
-  .arch-flow-diagram {
-    flex-direction: column;
-    gap: 20px;
-  }
-  .step-arrow {
-    transform: rotate(90deg);
-  }
-  .footer-content {
-    flex-direction: column;
-    gap: 16px;
-    text-align: center;
-  }
-}
+/* Mobile styles defined in universal responsive section */
 
 /* =========================================================
    User Authentication System (Modal & Components)
@@ -4154,6 +4101,544 @@
 
 .chatgpt-footer-bullet {
   color: #454545;
+}
+
+/* =========================================================
+   Comprehensive Responsive Design System
+   Breakpoints: 1024px (Tablet Landscape), 860px (Tablet), 
+                768px (Mobile & Small Tablets), 480px (Smartphones)
+   ========================================================= */
+
+/* 1. TABLET / SMALL DESKTOP (<= 1024px) */
+@media (max-width: 1024px) {
+  .landing-navbar {
+    width: calc(100% - 32px);
+    padding: 10px 20px;
+  }
+  .landing-hero-section {
+    padding: 0 20px;
+    margin: 50px auto 30px;
+  }
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    padding: 20px;
+  }
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .benchmarks-comparison-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .chatgpt-conversation-scroll {
+    padding: 0 16px;
+  }
+}
+
+/* 2. MEDIUM TABLET / COMPACT LANDSCAPE (<= 860px) */
+@media (max-width: 860px) {
+  .landing-nav-links {
+    display: none;
+  }
+  .landing-navbar {
+    padding: 8px 16px;
+  }
+  .hero-main-title {
+    font-size: 2.8rem;
+  }
+  .arch-flow-diagram {
+    flex-direction: column;
+    gap: 20px;
+    padding: 24px 18px;
+  }
+  .step-arrow {
+    transform: rotate(90deg);
+  }
+  .cta-content h2 {
+    font-size: 1.9rem;
+  }
+  .cta-banner-box {
+    padding: 40px 24px;
+  }
+  .footer-content {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+  .footer-brand {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .footer-copy {
+    margin-left: 0;
+  }
+}
+
+/* 3. MOBILE & PHABLET (<= 768px) */
+@media (max-width: 768px) {
+  /* Layout & Mobile Sidebar Drawer */
+  .chatgpt-layout {
+    height: 100dvh;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .chatgpt-sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    height: 100dvh !important;
+    height: 100vh !important;
+    width: min(85vw, 300px) !important;
+    z-index: 100 !important;
+    box-shadow: 12px 0 40px rgba(0, 0, 0, 0.85);
+  }
+
+  .sidebar-mobile-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(4px);
+    z-index: 95;
+  }
+
+  .chatgpt-main-viewport {
+    width: 100%;
+    height: 100dvh;
+    height: 100vh;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  /* Top Header */
+  .chatgpt-top-header {
+    height: 52px;
+    padding: 6px 12px;
+  }
+
+  .header-left-actions {
+    gap: 6px;
+  }
+
+  .model-selector-btn {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+
+  .header-right-actions {
+    gap: 6px;
+  }
+
+  .header-login-btn,
+  .header-signup-btn {
+    height: 30px;
+    padding: 0 12px;
+    font-size: 0.78rem;
+  }
+
+  .website-nav-pill-btn {
+    padding: 5px 10px;
+    font-size: 0.76rem;
+    gap: 4px;
+  }
+
+  /* Home Empty State */
+  .home-ambient-glow {
+    width: 180px;
+    height: 180px;
+  }
+
+  .home-hero-title {
+    font-size: 1.55rem !important;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+    text-align: center;
+    line-height: 1.25;
+  }
+
+  .home-hero-badge {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    margin-bottom: 12px;
+  }
+
+  .home-hero-logo-wrap {
+    margin-bottom: 12px;
+  }
+
+  .home-main-input-box {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .home-category-tabs {
+    display: flex;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding: 4px 2px 8px;
+    gap: 8px;
+    justify-content: flex-start;
+    width: 100%;
+    scrollbar-width: none;
+  }
+
+  .home-category-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .home-category-pill {
+    white-space: nowrap;
+    font-size: 0.78rem;
+    padding: 5px 12px;
+    flex-shrink: 0;
+  }
+
+  .home-suggestions-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .home-suggestion-card {
+    padding: 12px 14px;
+    width: 100%;
+  }
+
+  /* Messages & Conversation Scroll */
+  .chatgpt-conversation-scroll {
+    padding: 8px 10px 14px;
+  }
+
+  .chatgpt-message-row {
+    padding: 14px 6px;
+  }
+
+  .assistant-content-container {
+    gap: 10px;
+  }
+
+  .user-message-bubble {
+    max-width: 90% !important;
+    font-size: 0.92rem;
+    padding: 10px 14px;
+    border-radius: 18px 18px 4px 18px;
+  }
+
+  .assistant-markdown-body {
+    font-size: 0.92rem;
+  }
+
+  .code-block-wrapper {
+    margin: 10px 0;
+    max-width: calc(100vw - 32px);
+    border-radius: 10px;
+  }
+
+  .code-block-header {
+    padding: 6px 10px;
+    font-size: 0.72rem;
+  }
+
+  .code-block-pre {
+    padding: 10px 12px;
+    font-size: 0.78rem;
+    overflow-x: auto;
+  }
+
+  .assistant-markdown-body table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .message-action-bar {
+    opacity: 1 !important;
+    margin-top: 6px;
+  }
+
+  /* Input Box (Mobile) */
+  .chatgpt-input-container {
+    padding: 0 8px 10px;
+    width: 100%;
+  }
+
+  .chatgpt-input-wrapper {
+    border-radius: 20px;
+    padding: 8px 10px 8px 12px;
+  }
+
+  .chatgpt-textarea {
+    font-size: 16px !important;
+    min-height: 24px;
+    line-height: 1.4;
+  }
+
+  .input-bottom-toolbar {
+    margin-top: 6px;
+    gap: 4px;
+  }
+
+  .toolbar-left-tools {
+    gap: 4px;
+  }
+
+  .capsule-tool-pill {
+    padding: 5px 8px;
+    font-size: 0.75rem;
+  }
+
+  .capsule-circle-btn,
+  .send-circle-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .input-disclaimer-text {
+    font-size: 0.68rem;
+    margin-top: 6px;
+    line-height: 1.3;
+    padding: 0 8px;
+  }
+
+  /* Modals (Settings, Auth) */
+  .modal-backdrop {
+    padding: 8px;
+    align-items: flex-end;
+  }
+
+  .settings-modal-dialog {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 88dvh !important;
+    border-radius: 20px 20px 0 0 !important;
+    margin: 0;
+  }
+
+  .modal-header {
+    padding: 12px 16px;
+  }
+
+  .modal-tabs-bar {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding: 4px 10px 0;
+    gap: 4px;
+    scrollbar-width: none;
+  }
+
+  .modal-tabs-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .modal-tab-btn {
+    white-space: nowrap;
+    font-size: 0.78rem;
+    padding: 8px 10px;
+    flex-shrink: 0;
+  }
+
+  .modal-body-content {
+    padding: 14px;
+    max-height: calc(88dvh - 100px);
+    overflow-y: auto;
+  }
+
+  .logo-cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px;
+  }
+
+  .model-cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px;
+  }
+
+  .setting-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .auth-modal-dialog {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 20px 20px 0 0;
+  }
+
+  /* Landing Page (Mobile) */
+  .landing-page-root {
+    height: 100dvh;
+    height: 100vh;
+  }
+
+  .landing-hero-section {
+    padding: 0 16px;
+    margin: 40px auto 24px;
+  }
+
+  .hero-main-title {
+    font-size: 2.15rem !important;
+    line-height: 1.15;
+  }
+
+  .hero-subtext {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .hero-primary-btn,
+  .hero-secondary-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+    font-size: 0.92rem;
+  }
+
+  .demo-mockup-window {
+    margin: 0;
+    border-radius: 14px;
+    padding: 12px;
+    width: 100%;
+  }
+
+  .mock-input-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .mock-run-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .bento-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+  }
+
+  .bento-card.large {
+    grid-column: span 1;
+  }
+
+  .section-title {
+    font-size: 1.65rem !important;
+  }
+
+  .code-tabs-header {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+  }
+
+  .code-tabs-header::-webkit-scrollbar {
+    display: none;
+  }
+
+  .code-snippet-viewport {
+    padding: 14px 12px;
+  }
+
+  .snippet-code-pre {
+    font-size: 0.74rem;
+  }
+
+  .cta-banner-box {
+    padding: 32px 18px;
+  }
+
+  .cta-content h2 {
+    font-size: 1.55rem;
+  }
+
+  .cta-banner-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Full Screen Auth Page */
+  .chatgpt-auth-header {
+    padding: 12px 16px;
+  }
+
+  .chatgpt-auth-card {
+    padding: 16px 12px;
+    width: 100%;
+  }
+
+  .chatgpt-auth-heading {
+    font-size: 1.65rem;
+  }
+
+  .chatgpt-auth-subheading {
+    font-size: 0.88rem;
+  }
+}
+
+/* 4. ULTRA-COMPACT SMARTPHONES (<= 480px) */
+@media (max-width: 480px) {
+  .landing-navbar {
+    width: calc(100% - 16px);
+    padding: 6px 12px;
+    top: 8px;
+  }
+
+  .landing-badge {
+    display: none;
+  }
+
+  .launch-app-nav-btn {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    gap: 4px;
+  }
+
+  .tool-pill-label {
+    display: none;
+  }
+
+  .capsule-tool-pill {
+    padding: 6px 8px;
+  }
+
+  .header-signup-btn {
+    display: none;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 14px;
+  }
+
+  .stat-card {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .stat-card:last-child {
+    border-bottom: none;
+  }
+
+  .hero-main-title {
+    font-size: 1.95rem !important;
+  }
 }
 
 

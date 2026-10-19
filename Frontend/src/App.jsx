@@ -17,7 +17,9 @@ export default function App() {
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [backendOnline, setBackendOnline] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(() =>
+    typeof window !== "undefined" ? window.innerWidth > 768 : true
+  );
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [currentModel, setCurrentModel] = useState("nexa-4");
 
@@ -133,6 +135,9 @@ export default function App() {
         setActiveThread(res.thread);
         setMessages(res.thread.messages || []);
       }
+      if (window.innerWidth <= 768) {
+        setIsSidebarOpen(false);
+      }
     } catch (err) {
       console.error("Failed to load thread:", err);
     } finally {
@@ -145,6 +150,9 @@ export default function App() {
     setActiveThreadId(null);
     setActiveThread(null);
     setMessages([]);
+    if (window.innerWidth <= 768) {
+      setIsSidebarOpen(false);
+    }
   };
 
   // Delete a single thread

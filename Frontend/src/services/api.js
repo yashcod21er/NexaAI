@@ -1,4 +1,6 @@
-const API_BASE = "http://localhost:5000";
+const API_BASE =
+  import.meta.env.VITE_API_URL ||
+  (import.meta.env.PROD ? "" : "http://localhost:5000");
 
 // Storage keys
 const TOKEN_KEY = "nexaai_auth_token";

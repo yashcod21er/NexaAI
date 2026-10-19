@@ -1,0 +1,46 @@
+services:
+  # ========================================================
+  # 1. Backend Web Service (Node.js / Express / Gemini / Atlas)
+  # ========================================================
+  - type: web
+    name: nexaai-backend
+    runtime: node
+    plan: free
+    region: oregon
+    rootDir: Backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: MONGODB_URI
+        sync: false
+      - key: MONGODB_DB_NAME
+        value: nexaai
+      - key: JWT_SECRET
+        generateValue: true
+
+  # ========================================================
+  # 2. Frontend Static Site (React 19 / Vite 8 SPA)
+  # ========================================================
+  - type: static
+    name: nexaai-frontend
+    runtime: static
+    plan: free
+    region: oregon
+    rootDir: Frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: nexaai-backend
+          property: host
