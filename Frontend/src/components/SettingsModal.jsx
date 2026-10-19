@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Sliders, Database, Cpu, Trash2, Sparkles, ShieldCheck } from "lucide-react";
+import { X, Sliders, Database, Cpu, Trash2, Sparkles, ShieldCheck, Palette, Check, Layers } from "lucide-react";
+import NexaLogo from "./NexaLogo";
 
 export default function SettingsModal({
   isOpen,
@@ -12,6 +13,13 @@ export default function SettingsModal({
 }) {
   const [activeTab, setActiveTab] = useState("general");
   const [accent, setAccent] = useState("emerald");
+  const [logoVariant, setLogoVariant] = useState(() => {
+    try {
+      return localStorage.getItem("nexaai_logo_variant") || "prism";
+    } catch {
+      return "prism";
+    }
+  });
 
   const accents = [
     { id: "emerald", label: "Emerald (Default)", color: "#10a37f" },
@@ -19,6 +27,47 @@ export default function SettingsModal({
     { id: "violet", label: "Ultra Violet", color: "#8b5cf6" },
     { id: "amber", label: "Solar Amber", color: "#f59e0b" },
   ];
+
+  const logoOptions = [
+    {
+      id: "prism",
+      title: "The Nexus Prism",
+      subtitle: "3-facet folded origami letterform with optical bevel depth & dual-core gradient.",
+      inspiration: "Linear & Raycast Inspired",
+      badge: "Flagship / Recommended",
+    },
+    {
+      id: "loop",
+      title: "The Quantum Core",
+      subtitle: "Continuous topological infinity loop mirroring neural synaptic computation.",
+      inspiration: "OpenAI & Perplexity Inspired",
+      badge: "Algorithmic",
+    },
+    {
+      id: "hex",
+      title: "The Hex Monolith",
+      subtitle: "Cybernetic isometric microchip polygon with high-contrast kinetic path cuts.",
+      inspiration: "Compiler & DeepTech Inspired",
+      badge: "Cybernetic",
+    },
+    {
+      id: "minimal",
+      title: "The Kinetic Monogram",
+      subtitle: "Ultra-pure dual monoliths bridged by a dynamic 45° supersonic vector blade.",
+      inspiration: "Supabase & Stripe Inspired",
+      badge: "Minimalist",
+    },
+  ];
+
+  const handleSelectLogo = (id) => {
+    setLogoVariant(id);
+    try {
+      localStorage.setItem("nexaai_logo_variant", id);
+      window.dispatchEvent(new Event("nexaai_logo_change"));
+    } catch (e) {
+      console.warn("Could not save logo preference:", e);
+    }
+  };
 
   if (!isOpen) return null;
 
@@ -59,6 +108,14 @@ export default function SettingsModal({
             >
               <Sliders size={14} />
               <span>General</span>
+            </button>
+            <button
+              type="button"
+              className={`modal-tab-btn ${activeTab === "branding" ? "active" : ""}`}
+              onClick={() => setActiveTab("branding")}
+            >
+              <Palette size={14} />
+              <span>Brand & Logo</span>
             </button>
             <button
               type="button"
@@ -112,23 +169,75 @@ export default function SettingsModal({
 
                 <div className="setting-row">
                   <div className="setting-info">
-                    <h4>Keyboard Shortcuts</h4>
-                    <p>Navigate with maximum developer velocity</p>
+                    <h4>Streaming Typewriter Speed</h4>
+                    <p>Paces explanatory text smoothly while bypassing code blocks</p>
                   </div>
-                  <div className="shortcuts-list">
-                    <div className="shortcut-item">
-                      <span>Send Message</span>
-                      <kbd>Enter</kbd>
-                    </div>
-                    <div className="shortcut-item">
-                      <span>New Line</span>
-                      <kbd>Shift + Enter</kbd>
-                    </div>
-                    <div className="shortcut-item">
-                      <span>New Conversation</span>
-                      <kbd>Alt + N</kbd>
+                  <span className="badge">14ms / char</span>
+                </div>
+
+                <div className="setting-row">
+                  <div className="setting-info">
+                    <h4>Interface Theme</h4>
+                    <p>High-contrast OpenAI Dark Obsidian theme</p>
+                  </div>
+                  <span className="badge">Obsidian Dark</span>
+                </div>
+              </motion.div>
+            )}
+
+            {/* BRAND & LOGO SELECTOR TAB */}
+            {activeTab === "branding" && (
+              <motion.div
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="tab-panel"
+              >
+                <div className="branding-header-banner">
+                  <div className="banner-left">
+                    <NexaLogo size={42} showTile={true} glow={true} variant={logoVariant} />
+                    <div>
+                      <h4 className="banner-title">100% Vector SVG Architecture</h4>
+                      <p className="banner-desc">
+                        Razor-sharp mathematical geometry with zero raster compression or AI airbrush artifacts.
+                      </p>
                     </div>
                   </div>
+                </div>
+
+                <div className="logo-cards-grid">
+                  {logoOptions.map((opt) => {
+                    const isSelected = logoVariant === opt.id;
+                    return (
+                      <motion.div
+                        key={opt.id}
+                        className={`logo-option-card ${isSelected ? "selected" : ""}`}
+                        onClick={() => handleSelectLogo(opt.id)}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <div className="logo-card-top">
+                          <span className={`logo-card-badge ${opt.id === "prism" ? "flagship" : ""}`}>
+                            {opt.badge}
+                          </span>
+                          {isSelected && (
+                            <div className="logo-card-check">
+                              <Check size={14} />
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="logo-card-preview">
+                          <NexaLogo size={56} showTile={true} glow={isSelected} variant={opt.id} />
+                        </div>
+
+                        <div className="logo-card-info">
+                          <h5 className="logo-card-title">{opt.title}</h5>
+                          <span className="logo-card-inspire">{opt.inspiration}</span>
+                          <p className="logo-card-desc">{opt.subtitle}</p>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
                 </div>
               </motion.div>
             )}
@@ -198,14 +307,14 @@ export default function SettingsModal({
 
                 <div className="danger-zone">
                   <div className="setting-info">
-                    <h4>Clear Conversations</h4>
-                    <p>Permanently remove current conversation history from database</p>
+                    <h4>Clear Local & Thread Cache</h4>
+                    <p>Permanently remove current conversation history</p>
                   </div>
                   <motion.button
                     type="button"
                     className="danger-btn"
                     onClick={() => {
-                      if (window.confirm("Are you sure you want to clear conversations?")) {
+                      if (window.confirm("Clear all conversations and reset state?")) {
                         onClearAllChats();
                         onClose();
                       }
@@ -213,8 +322,8 @@ export default function SettingsModal({
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
                   >
-                    <Trash2 size={15} />
-                    <span>Clear All</span>
+                    <Trash2 size={14} />
+                    <span>Clear All Chats</span>
                   </motion.button>
                 </div>
               </motion.div>

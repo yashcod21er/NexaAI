@@ -16,6 +16,7 @@ import {
   Copy,
   Send,
 } from "lucide-react";
+import NexaLogo from "./NexaLogo";
 
 export default function LandingPage({ onLaunchApp, onSelectPrompt, backendOnline }) {
   const [activeCodeTab, setActiveCodeTab] = useState("sse");
@@ -296,9 +297,7 @@ export async function* getOpenAIStreamResponse(history, prompt) {
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
         <div className="landing-nav-brand">
-          <div className="landing-logo-badge">
-            <Sparkles size={16} />
-          </div>
+          <NexaLogo size={32} showTile={true} glow={true} />
           <span className="landing-brand-text">NexaAI</span>
           <span className="landing-badge">4.0 Omni</span>
         </div>
@@ -873,9 +872,7 @@ export async function* getOpenAIStreamResponse(history, prompt) {
       <footer className="landing-footer">
         <div className="footer-content">
           <div className="footer-brand">
-            <div className="landing-logo-badge">
-              <Sparkles size={14} />
-            </div>
+            <NexaLogo size={24} showTile={true} glow={false} />
             <span className="footer-title">NexaAI</span>
             <span className="footer-copy">© 2026 NexaAI Inc. Built with Framer Motion & Gemini.</span>
           </div>

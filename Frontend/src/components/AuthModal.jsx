@@ -13,6 +13,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { api } from "../services/api";
+import NexaLogo from "./NexaLogo";
 
 export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
   const [mode, setMode] = useState("login"); // "login" | "signup"
@@ -102,9 +103,7 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
           {/* Header */}
           <div className="auth-modal-header">
             <div className="auth-brand-badge">
-              <div className="auth-logo-badge">
-                <Sparkles size={16} />
-              </div>
+              <NexaLogo size={24} showTile={true} />
               <span className="auth-brand-title">NexaAI</span>
             </div>
             <button

@@ -1801,6 +1801,135 @@
   color: #60a5fa;
 }
 
+/* Brand & Logo Selector Tab in Settings */
+.branding-header-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, rgba(16, 163, 127, 0.12) 0%, rgba(6, 182, 212, 0.08) 100%);
+  border: 1px solid rgba(16, 163, 127, 0.25);
+  border-radius: 12px;
+  margin-bottom: 4px;
+}
+
+.banner-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.banner-title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 2px;
+}
+
+.banner-desc {
+  font-size: 0.77rem;
+  color: var(--text-tertiary, #8e8ea0);
+  line-height: 1.35;
+}
+
+.logo-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.logo-option-card {
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: rgba(255, 255, 255, 0.02);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-option-card:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+}
+
+.logo-option-card.selected {
+  border-color: #10a37f;
+  background-color: rgba(16, 163, 127, 0.08);
+  box-shadow: 0 0 20px rgba(16, 163, 127, 0.15);
+}
+
+.logo-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-card-badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary, #b4b4b4);
+  letter-spacing: 0.02em;
+}
+
+.logo-card-badge.flagship {
+  background: rgba(16, 163, 127, 0.2);
+  color: #10a37f;
+  border: 1px solid rgba(16, 163, 127, 0.35);
+}
+
+.logo-card-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #10a37f;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-card-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.logo-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.logo-card-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.logo-card-inspire {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #10a37f;
+}
+
+.logo-card-desc {
+  font-size: 0.74rem;
+  color: var(--text-tertiary, #8e8ea0);
+  line-height: 1.35;
+  margin-top: 2px;
+}
+
 /* Status Health Box */
 .status-health-box {
   background-color: rgba(255, 255, 255, 0.03);
@@ -3504,32 +3633,23 @@
   user-select: none;
 }
 
-.nexa-logo-image-wrapper {
+.nexa-logo-svg-wrapper {
   position: relative;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: #0d0e12;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
   flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
 }
 
-.nexa-logo-image-wrapper.glow-effect {
-  box-shadow: 0 0 16px rgba(16, 163, 127, 0.35), 0 0 30px rgba(6, 182, 212, 0.2);
-}
-
-.nexa-logo-image-wrapper:hover {
+.nexa-logo-svg-wrapper.glow-effect:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 24px rgba(16, 163, 127, 0.5), 0 0 40px rgba(6, 182, 212, 0.35);
+  filter: drop-shadow(0 0 16px rgba(16, 163, 127, 0.45));
 }
 
-.nexa-logo-img {
+.nexa-logo-svg {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  border-radius: inherit;
   display: block;
 }
 

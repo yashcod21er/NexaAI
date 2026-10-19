@@ -15,6 +15,7 @@ import {
   X,
   Maximize2,
 } from "lucide-react";
+import NexaLogo from "./NexaLogo";
 
 // Format bytes into readable string
 const formatFileSize = (bytes) => {
@@ -320,7 +321,7 @@ export default function ChatMessage({ message, onRegenerate }) {
       <div className="assistant-content-container">
         {/* Assistant Avatar Icon */}
         <div className="assistant-avatar-icon" title="NexaAI">
-          <Sparkles size={16} />
+          <NexaLogo size={18} showTile={false} glow={false} />
         </div>
 
         {/* Markdown Rendered Content with Theory-Only Typing */}
